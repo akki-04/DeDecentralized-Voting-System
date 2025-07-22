@@ -44,4 +44,24 @@ contract DecentralizedVotingSystem {
         Candidate memory candidate = candidates[_candidateId];
         return (candidate.name, candidate.voteCount);
     }
+
+    //  New Function: Get the winning candidate
+    function getWinner() public view returns (string memory winnerName, uint winnerVoteCount) {
+        uint winningVoteCount = 0;
+        uint winningCandidateId = 0;
+
+        for (uint i = 1; i <= candidatesCount; i++) {
+            if (candidates[i].voteCount > winningVoteCount) {
+                winningVoteCount = candidates[i].voteCount;
+                winningCandidateId = i;
+            }
+        }
+
+        if (winningCandidateId == 0) {
+            return ("No winner yet", 0);
+        }
+
+        Candidate memory winner = candidates[winningCandidateId];
+        return (winner.name, winner.voteCount);
+    }
 }
