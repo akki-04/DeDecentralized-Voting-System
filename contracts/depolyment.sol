@@ -65,3 +65,4 @@ contract DecentralizedVotingSystem {
         return (winner.name, winner.voteCount);
     }
 }
+
